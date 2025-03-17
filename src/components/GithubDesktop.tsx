@@ -6,6 +6,7 @@ import { IoLockClosedOutline } from 'react-icons/io5';
 import { IoGitBranch } from 'react-icons/io5';
 import { ImSpinner11 } from 'react-icons/im';
 import NavbarButton from './NavbarButton';
+import { FaCheck } from 'react-icons/fa6';
 
 const GithubDesktop = () => {
   const [sidebarActive, setSidebarActive] = useState('changes');
@@ -75,14 +76,14 @@ const GithubDesktop = () => {
                 <input type="checkbox" checked readOnly className="mr-2" />
                 <span className="text-neutral-400">randomfolder\</span>package.json
               </li>
-              <li className="flex items-center border-b border-neutral-200 p-1.5">
+              <li className="flex items-center border-b border-neutral-200 bg-[#0366d6] p-1.5 text-white">
                 <input type="checkbox" checked readOnly className="mr-2" />
-                <span className="text-neutral-400">randomfolder\src\app\</span>page.tsx
+                randomfolder\src\app\page.tsx
               </li>
             </ul>
           </div>
           {/* Commit window */}
-          <div className="bg-[#f6f8fa] p-2 text-xs">
+          <div className="rounded-bl-xl bg-[#f6f8fa] p-2 text-xs">
             <div className="flex justify-between">
               <div className="mr-2 h-6 w-6 rounded-full bg-gray-400"></div>
               <input
@@ -107,12 +108,42 @@ const GithubDesktop = () => {
         </div>
 
         {/* Code Diff Panel */}
-        <div className="w-3/4 p-4">
-          {/* <h2 className="text-lg font-bold">frontend/src/components/ItemCard.tsx</h2>
-          <div className="mt-2 rounded-md bg-gray-100 p-2 font-mono text-sm">
-            <p className="text-red-600">- {'<p>{item.wear.name}</p>'}</p>
-            <p className="text-green-600">+ {'<p className="text-xs">{item.wear.name}</p>'}</p>
-          </div> */}
+        <div className="w-full text-xs">
+          <div className="bg-neutral-100 p-1.5">
+            <span className="text-neutral-400">randomfolder\src\app\</span>page.tsx
+          </div>
+
+          <ul>
+            <li className="flex bg-[#f1f8ff] p-0.5">
+              <div className="w-1/10 bg-[#dbedff]"></div>
+              <span className="text-neutral-500">@@ -1,6 +1,6 @@</span>
+            </li>
+
+            <li className="flex p-0.5">
+              <div className="flex w-1/10 bg-white"></div>
+              <span>import C2 from '@/components/C2';</span>
+            </li>
+
+            <li className="flex bg-[#e6ffed]">
+              <div className="flex w-1/10 bg-white p-0.5"></div>
+              <span className="p-0.5">+ import C1 from '@/components/C1';</span>
+            </li>
+
+            <li className="flex p-0.5">
+              <div className="flex w-1/10 bg-white"></div>
+              <span>import C3 from '@/components/C3';</span>
+            </li>
+
+            <li className="flex bg-[#ffeef0]">
+              <div className="flex w-1/10 bg-white p-0.5"></div>
+              <span className="p-0.5">- import C4 from '@/components/C4';</span>
+            </li>
+
+            <li className="flex p-0.5">
+              <div className="flex w-1/10 bg-white"></div>
+              <span>import C3 from '@/components/C3';</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
