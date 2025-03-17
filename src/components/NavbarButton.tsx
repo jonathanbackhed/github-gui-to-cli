@@ -20,7 +20,7 @@ const NavbarButton = ({
 }: Props) => {
   return (
     <button
-      className={`${largeWidth ? 'w-1/4' : 'w-1/5'} flex cursor-pointer items-center justify-between border-r border-neutral-950 px-4 py-3 text-xs`}
+      className={`${largeWidth ? 'w-1/4' : 'w-1/5'} flex cursor-pointer items-center justify-between border-r border-neutral-950 px-4 py-3 text-xs text-white`}
     >
       <div className="flex items-center space-x-2">
         {icon}
