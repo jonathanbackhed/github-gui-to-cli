@@ -7,12 +7,48 @@ import { IoGitBranch } from 'react-icons/io5';
 import { ImSpinner11 } from 'react-icons/im';
 import NavbarButton from './NavbarButton';
 import { FaCheck } from 'react-icons/fa6';
+import { motion } from 'motion/react';
+import { TextBlock } from '@/interfaces/ITextBlock';
 
-const GithubDesktop = () => {
+interface Props {
+  informationCallback: React.Dispatch<React.SetStateAction<TextBlock>>;
+}
+
+const GithubDesktop = ({ informationCallback }: Props) => {
   const [sidebarActive, setSidebarActive] = useState('changes');
+  const [xCord, setXCord] = useState(0);
+  const [yCord, setYCord] = useState(0);
+
+  const resetX = () => setXCord(0);
+  const resetY = () => setYCord(0);
+
+  const getRandomColor = () => {
+    const colors = [
+      'lime',
+      'green',
+      'teal',
+      'cyan',
+      'sky',
+      'blue',
+      'indigo',
+      'violet',
+      'purple',
+      'fuchsia',
+      'pink',
+      'rose',
+      'slate',
+      'neutral',
+    ];
+
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
 
   return (
-    <div className="flex h-full w-full flex-col rounded-xl bg-white">
+    <motion.div
+      className="flex h-[878px] w-[1339px] flex-col rounded-xl bg-white"
+      animate={{ x: xCord, y: yCord }}
+      transition={{ duration: 0.7 }}
+    >
       {/* Top Bar */}
       <div className="rounded-t-lg bg-[#24292e]">
         <div className="flex w-full items-center space-x-4 border-b border-b-neutral-950 px-2 py-1 text-xs text-neutral-300">
@@ -50,7 +86,18 @@ const GithubDesktop = () => {
       <div className="flex flex-grow">
         {/* Sidebar */}
         <div className="flex w-1/4 flex-col justify-between border-r border-neutral-200">
-          <div>
+          <div
+            onClick={() => {
+              setXCord(500);
+              informationCallback({
+                x: -350,
+                y: 0,
+                text: 'To see changes use the "git status" command',
+                show: true,
+              });
+            }}
+            className="h-full rounded-lg outline-0 outline-offset-4 outline-green-500 hover:z-100 hover:outline-6"
+          >
             <div className="flex items-center justify-center text-sm text-neutral-800">
               <button
                 className={`${sidebarActive === 'changes' ? 'border-b-4 border-b-[#0366d6]' : 'border-b'} w-full cursor-pointer border-r border-neutral-200 py-1`}
@@ -68,7 +115,7 @@ const GithubDesktop = () => {
             {/* Files */}
             <ul className="text-xs">
               <li className="flex items-center justify-between border-b border-neutral-200 bg-neutral-100 px-1 py-2">
-                <input type="checkbox" checked className="" />
+                <input type="checkbox" checked readOnly />
                 <span>2 changed files</span>
                 <input type="checkbox" checked readOnly className="opacity-0" />
               </li>
@@ -101,7 +148,19 @@ const GithubDesktop = () => {
               disabled
               className="mt-2 w-full resize-none rounded-lg border border-neutral-400 bg-white p-1"
             ></textarea>
-            <button className="mt-2 w-full rounded-lg bg-[#0372ef] p-1 text-white">
+            <button
+              onClick={() => {
+                setXCord(500);
+                setYCord(-200);
+                informationCallback({
+                  x: -350,
+                  y: 250,
+                  text: 'To commit use "git commit", you can also use "git commit -m "example text" to commit with a message"',
+                  show: true,
+                });
+              }}
+              className="mt-2 w-full rounded-lg bg-[#0372ef] p-1 text-white outline-0 outline-offset-4 outline-indigo-500 hover:z-100 hover:outline-6"
+            >
               Commit to <span className="font-bold">master</span>
             </button>
           </div>
@@ -146,7 +205,7 @@ const GithubDesktop = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

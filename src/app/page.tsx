@@ -1,12 +1,13 @@
+'use client';
+
+import AnimationLayer from '@/components/AnimationLayer';
 import CenterImage from '@/components/CenterImage';
 import GithubDesktop from '@/components/GithubDesktop';
 
 export default function Home() {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <div className="h-[878px] w-[1339px]">
-        <GithubDesktop />
-      </div>
+    <div className="flex h-screen w-screen flex-col items-center justify-center space-y-5 overflow-hidden">
+      <AnimationLayer />
       {/* <CenterImage /> */}
     </div>
   );
